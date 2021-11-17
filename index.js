@@ -130,7 +130,7 @@ app.post('/updateinfo',authenticate,async(req,res)=>{
             {    
                //let data = db.collection("users").updateOne({email:req.body.email},{ $set: {gender:req.body.gender,dob:req.body.dob,mobile:req.body.mobile } });
                const users= document=await db.collection("users").findOneAndUpdate({email},{ $set: {gender:req.body.gender,dob:req.body.dob,mobile:req.body.mobile}});
-                const data=users.value
+                const data=await db.collection("users").findOne({email:req.body.email});
                res.status(200).json({data});   
             }
             else{
